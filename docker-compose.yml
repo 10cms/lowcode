@@ -1,0 +1,34 @@
+version: '3.1'
+  
+services:
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+
+  server:
+    image: node:18.18.2
+    restart: always
+    volumes:
+      - ./server:/var/www
+    working_dir: /var/www
+    environment:
+      IS_PROD: true
+    command: ['npm', 'run', 'start']
+
+  gateway:
+    image: node:18.18.2
+    restart: always
+    ports:
+      - 80:3000
+    volumes:
+      - ./gateway:/var/www
+      - ./client/build:/var/www/client
+    working_dir: /var/www
+    command: ['npm', 'run', 'start']
