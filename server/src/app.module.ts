@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EntityController } from './controllers/entity/entity.controller';
 import { SeedCommand } from './commands/seed.command';
-import { AccountController } from './controllers/account/account.controller';
-import { EntityFieldController } from './controllers/entity-field/entity-field.controller';
 import { AcceptLanguageResolver, CookieResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
 import { UserModule } from './user/user.module';
 import { MongodbModule } from './mongodb/mongodb.module';
@@ -32,7 +29,7 @@ import * as path from 'path';
     ResourceModule,
     PageModule
   ],
-  controllers: [AppController, EntityController, AccountController, EntityFieldController],
+  controllers: [AppController],
   providers: [
     AppService,
     SeedCommand
