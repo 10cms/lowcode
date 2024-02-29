@@ -1,0 +1,17 @@
+{
+  "resource": {
+    "create": "You are not allowed to create a resource",
+    "delete": "You are not allowed to delete this resource",
+    "read": "You are not allowed to read this resource",
+    "update": "You are not allowed to update this resource"
+  },
+  "project": {
+    "delete": "You are not allowed to delete this project",
+    "read": "You are not allowed to read this project",
+    "update": "You are not allowed to update this project"
+  },
+  "projectMember": {
+    "create": "You are not allowed to create a project member",
+    "remove": "You are not allowed to remove this project member"
+  }
+}

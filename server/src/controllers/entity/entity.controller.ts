@@ -1,22 +1,35 @@
-import { Body, Controller, Get, Post, UsePipes } from '@nestjs/common';
-import { CreateEntityDto, CreateEntitySchema } from '../../dto/create-entity.dto';
-import { AjvValidationPipe } from 'src/pipes/ajv-validation.pipe';
-import { EntityService } from 'src/services/entity/entity.service';
+import { Controller } from '@nestjs/common';
 
 @Controller('entity')
 export class EntityController {
   constructor(
-    private entityService: EntityService,
   ) {}
 
-  @Post()
-  @UsePipes(new AjvValidationPipe(CreateEntitySchema))
-  async create(@Body() createEntityDto: CreateEntityDto) {
-    return await this.entityService.createEntity(createEntityDto);
-  }
+  // @Post()
+  // @UsePipes(new AjvValidationPipe(CreateEntitySchema))
+  // async create(
+  //   @Body() createEntityDto: CreateEntityDto
+  // ) {
+  //   return await this.entityService.create(createEntityDto);
+  // }
 
-  @Get()
-  async findMany() {
-    return await this.entityService.findAll()
-  }
+  // @Patch()
+  // @UsePipes(new AjvValidationPipe(UpdateEntitySchema))
+  // async update(@Body() updateEntityDto: UpdateEntityDto) {
+  //   return await this.entityService.updateOne(updateEntityDto);
+  // }
+
+  // @Delete()
+  // @UsePipes(new AjvValidationPipe(DeleteEntitySchema))
+  // async delete(@Body() deleteEntityDto: DeleteEntityDto) {
+  //   return await this.entityService.deleteOne(deleteEntityDto);
+  // }
+
+  // @Get()
+  // @UsePipes(new AjvValidationPipe(SearchEntitySchema))
+  // async findMany(
+  //   @Query() searchEntityDto: SearchEntityDto
+  // ) {
+  //   return await this.entityService.findMany(searchEntityDto)
+  // }
 }

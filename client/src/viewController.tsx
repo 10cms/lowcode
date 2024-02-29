@@ -42,6 +42,7 @@ class Controller {
                 });
                 this.pluginContext?.plugins.pluginResourceData.update(list);
                 const resource = this.pluginContext?.workspace.resourceList.filter(d => d.id === values.slug)?.[0];
+                console.log({ resource })
                 this.pluginContext?.workspace.openEditorWindow(resource);
                 dialog.hide();
               }}

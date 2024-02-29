@@ -1,6 +1,6 @@
 import { getScenarioName } from "src/common";
 
-const baseUri = location.port ? `http://localhost:3000` : '/api'
+const baseUri = location.port ? `http://localhost:3000/api` : '/api'
 const projectSlug = getScenarioName()
 
 export const getConfig = async (configSlug: string) => {

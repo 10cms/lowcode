@@ -109,11 +109,11 @@ import { getScenarioName } from './common';
         title: '添加页面',
         action: controller.onAddPage,
       },
-      {
-        name: 'addModel',
-        title: '添加模型',
-        action: controller.onAddPage,
-      },
+      // {
+      //   name: 'addModel',
+      //   title: '添加模型',
+      //   action: controller.onAddPage,
+      // },
     ]),
     resourceContextMenuActions: (ctx: IPublicModelPluginContext, resource: IPublicModelResource) => ([
       {

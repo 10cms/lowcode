@@ -1,0 +1,7 @@
+{
+  "missSchema": "Validator schema is missing",
+  "required": "Required",
+  "existed": "Existed",
+  "notExist": "Not exist",
+  "objectId": "Invalid ObjectId"
+}

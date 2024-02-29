@@ -1,33 +1,40 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { EntityService } from './services/entity/entity.service';
-import { EntityFieldService } from './services/entity-field/entity-field.service';
-import { EntityField, EntityFieldSchema } from './schemas/entity-field.schema';
-import { Entity, EntitySchema } from './schemas/entity.schema';
 import { EntityController } from './controllers/entity/entity.controller';
-import { ProjectController } from './controllers/project/project.controller';
-import { ProjectConfigService } from './services/project-config/project-config.service';
-import { Project, ProjectSchema } from './schemas/project.schema';
-import { ProjectConfig, ProjectConfigSchema } from './schemas/project-config.schema';
-import { ProjectService } from './services/project/project.service';
 import { SeedCommand } from './commands/seed.command';
 import { AccountController } from './controllers/account/account.controller';
+import { EntityFieldController } from './controllers/entity-field/entity-field.controller';
+import { AcceptLanguageResolver, CookieResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
+import { UserModule } from './user/user.module';
+import { MongodbModule } from './mongodb/mongodb.module';
+import { ProjectModule } from './project/project.module';
+import { ResourceModule } from './resource/resource.module';
+import { PageModule } from './page/page.module';
+import * as path from 'path';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://root:root@mongo:27017'),
-    MongooseModule.forFeature([
-      { name: Entity.name, schema: EntitySchema },
-      { name: EntityField.name, schema: EntityFieldSchema },
-      { name: Project.name, schema: ProjectSchema },
-      { name: ProjectConfig.name, schema: ProjectConfigSchema }
-    ])
+    I18nModule.forRoot({
+      fallbackLanguage: 'en',
+      loaderOptions: {
+        path: path.join(__dirname, '/i18n/')
+      },
+      resolvers: [
+        new QueryResolver(['lang', 'l']),
+        new CookieResolver(),
+        AcceptLanguageResolver
+      ],
+    }),
+    UserModule,
+    MongodbModule,
+    ProjectModule,
+    ResourceModule,
+    PageModule
   ],
-  controllers: [AppController, EntityController, ProjectController, AccountController],
+  controllers: [AppController, EntityController, AccountController, EntityFieldController],
   providers: [
-    AppService, EntityService, EntityFieldService, ProjectConfigService, ProjectService,
+    AppService,
     SeedCommand
   ],
 })
